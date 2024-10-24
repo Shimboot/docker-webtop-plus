@@ -34,26 +34,19 @@ This image provides various versions that are available via tags. Please read th
 ```bash
 docker run -d \
   --name=webtop \
-  --security-opt seccomp=unconfined `# Allows less restricted security profile` \
-  --privileged `# Required for systemd and flatpaks` \
-  -e PUID=1000 `# User ID to run the container` \
-  -e PGID=1000 `# Group ID to run the container` \
-  -e TZ=Etc/UTC `# Set timezone` \
-  -e SUBFOLDER=/ `# Optional subfolder configuration` \
-  -e XDG_CURRENT_DESKTOP=ubuntu:GNOME `# Ensures GNOME compatibility` \
-  -e XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/config/.local/share/flatpak/exports/share:/usr/local/share:/usr/share `# Data directories for flatpaks` \
-  -e XDG_SESSION_TYPE=x11 `# Sets session type to x11` \
-  -e DESKTOP_SESSION=ubuntu `# Specifies the desktop session` \
-  -e GNOME_SHELL_SESSION_MODE=ubuntu `# GNOME shell session mode` \
-  -p 3000:3000 `# Port mapping` \
-  -p 3001:3001 `# Additional port mapping` \
-  -v /path/to/data:/config `# Mount configuration directory` \
-  -v /sys/fs/cgroup:/sys/fs/cgroup:ro `# Required for systemd to access cgroups` \
-  --device /dev/dri:/dev/dri `# Access to GPU (for graphics acceleration)` \
-  --shm-size="1gb" `# Increase shared memory size for better performance` \
-  --restart unless-stopped `# Restart policy` \
+  --security-opt seccomp=unconfined `#optional` \
+  --privileged `#optional but required to run flatpaks` \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -e SUBFOLDER=/ `#optional` \
+  -p 3000:3000 \
+  -p 3001:3001 \
+  -v /path/to/data:/config \
+  --device /dev/dri:/dev/dri `#optional` \
+  --shm-size="1gb" \
+  --restart unless-stopped \
   ghcr.io/mollomm1/docker-webtop-plus:master
-
 ```
 
 ## Parameters
