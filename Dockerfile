@@ -12,11 +12,14 @@ COPY /root/etc/apt/preferences.d/firefox-no-snap /etc/apt/preferences.d/firefox-
 
 COPY /root/ /
 
+RUN printf "\n# fixes and stuff for gnome and flatpaks\nexport $(dbus-launch)\nexport XDG_CURRENT_DESKTOP=ubuntu:GNOME\nexport XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/config/.local/share/flatpak/exports/share:/usr/local/share:/usr/share\nexport XDG_SESSION_TYPE=x11\nexport DESKTOP_SESSION=ubuntu\nexport GNOME_SHELL_SESSION_MODE=ubuntu\n" >> /etc/profile
+
+
 RUN \
   echo "**** install packages ****" && \
   add-apt-repository -y ppa:mozillateam/ppa && \
   apt-get update && \
-  apt-get install -y \
+  apt-get install -y software-properties-common
     firefox \
     fonts-ubuntu \
     gnome-shell \
