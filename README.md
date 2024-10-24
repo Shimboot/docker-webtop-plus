@@ -34,16 +34,17 @@ This image provides various versions that are available via tags. Please read th
 ```bash
 docker run -d \
   --name=webtop \
-  --security-opt seccomp=unconfined `#optional` \
-  --privileged `#optional but required to run flatpaks` \
+  --security-opt seccomp=unconfined \
+  --privileged \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -e SUBFOLDER=/ `#optional` \
+  -e SUBFOLDER=/ \
   -p 3000:3000 \
   -p 3001:3001 \
   -v /path/to/data:/config \
-  --device /dev/dri:/dev/dri `#optional` \
+  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+  --device /dev/dri:/dev/dri \
   --shm-size="1gb" \
   --restart unless-stopped \
   ghcr.io/mollomm1/docker-webtop-plus:master
