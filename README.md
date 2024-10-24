@@ -52,7 +52,7 @@ docker run -d \
   --device /dev/dri:/dev/dri `# Access to GPU (for graphics acceleration)` \
   --shm-size="1gb" `# Increase shared memory size for better performance` \
   --restart unless-stopped `# Restart policy` \
-  ghcr.io/mollomm1/docker-webtop-plus:master /bin/sh
+  ghcr.io/mollomm1/docker-webtop-plus:master
 
 ```
 
